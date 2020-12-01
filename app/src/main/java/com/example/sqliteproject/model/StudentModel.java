@@ -1,5 +1,7 @@
 package com.example.sqliteproject.model;
 
+import java.util.Comparator;
+
 public class StudentModel {
 
 
@@ -20,6 +22,35 @@ public class StudentModel {
     public StudentModel() {
 
     }
+
+public static Comparator<StudentModel> StudentAZComparator = new Comparator<StudentModel>() {
+    @Override
+    public int compare(StudentModel s1, StudentModel s2) {
+        return s1.getName().compareTo(s2.getName());
+    }
+};
+
+    public static Comparator<StudentModel> StudentZAComparator = new Comparator<StudentModel>() {
+        @Override
+        public int compare(StudentModel s1, StudentModel s2) {
+            return s2.getName().compareTo(s1.getName());
+        }
+    };
+
+    public static Comparator<StudentModel> StudentYearAscComparator = new Comparator<StudentModel>() {
+        @Override
+        public int compare(StudentModel s1, StudentModel s2) {
+            return s1.getEnrolYear() - s2.getEnrolYear();
+        }
+    };
+
+    public static Comparator<StudentModel> StudentYearDescComparator = new Comparator<StudentModel>() {
+        @Override
+        public int compare(StudentModel s1, StudentModel s2) {
+            return s2.getEnrolYear() - s1.getEnrolYear();
+        }
+    };
+
 
     @Override
     public String toString() {

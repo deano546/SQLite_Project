@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,14 +22,17 @@ import com.example.sqliteproject.R;
 import com.example.sqliteproject.adapters.RecycleViewAdapter;
 import com.example.sqliteproject.db.DBHelper;
 import com.example.sqliteproject.model.StudentModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnAdd;
     Button btnSearch;
+    FloatingActionButton btnPref;
     EditText etName;
     EditText etYear;
     EditText etSearch;
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd = findViewById(R.id.btnAdd);
         btnSearch = findViewById(R.id.btnSearch);
+        btnPref = findViewById(R.id.btnCamera);
         etName = findViewById(R.id.etName);
         etYear = findViewById(R.id.etYear);
         etSearch = findViewById(R.id.etSearch);
@@ -122,6 +128,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnPref.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,PreferenceActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -138,18 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
         switch(item.getItemId()) {
             case R.id.menu_aToZ:
-                studentList =  dbhelper.getSortedStudents("nameAsc");
-                rvStudents.setHasFixedSize(true);
+                Collections.sort(studentList, StudentModel.StudentAZComparator);
+               // studentList =  dbhelper.getSortedStudents("nameAsc");
+               rvStudents.setHasFixedSize(true);
 
                 layoutManager = new LinearLayoutManager(MainActivity.this);
-                rvStudents.setLayoutManager(layoutManager);
+               rvStudents.setLayoutManager(layoutManager);
 
-                mAdapter = new RecycleViewAdapter(studentList,MainActivity.this);
-                rvStudents.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
+               mAdapter = new RecycleViewAdapter(studentList,MainActivity.this);
+               rvStudents.setAdapter(mAdapter);
+               mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_zToA:
-                studentList =  dbhelper.getSortedStudents("nameDesc");
+                Collections.sort(studentList, StudentModel.StudentZAComparator);
+                // studentList =  dbhelper.getSortedStudents("nameDesc");
                 rvStudents.setHasFixedSize(true);
 
                 layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -160,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_yearAscending:
-                studentList =  dbhelper.getSortedStudents("yearAsc");
+                Collections.sort(studentList, StudentModel.StudentYearAscComparator);
+                //studentList =  dbhelper.getSortedStudents("yearAsc");
                 rvStudents.setHasFixedSize(true);
 
                 layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -171,7 +188,8 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_yearDescending:
-                studentList =  dbhelper.getSortedStudents("yearDesc");
+                Collections.sort(studentList, StudentModel.StudentYearDescComparator);
+                //studentList =  dbhelper.getSortedStudents("yearDesc");
                 rvStudents.setHasFixedSize(true);
 
                 layoutManager = new LinearLayoutManager(MainActivity.this);
