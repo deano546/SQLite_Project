@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/tvActiveDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginEnd="8dp"
+        android:text="@string/textview"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvYearDetail"
@@ -18,9 +19,9 @@
 
     <TextView
         android:id="@+id/tvYearDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/tvActiveDetail"
         app:layout_constraintStart_toEndOf="@+id/tvNameDetail"
@@ -28,9 +29,9 @@
 
     <TextView
         android:id="@+id/tvNameDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/tvYearDetail"
         app:layout_constraintStart_toEndOf="@+id/tvIDDetail"
@@ -38,11 +39,12 @@
 
     <TextView
         android:id="@+id/tvIDDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/textview"
+        android:gravity="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/tvNameDetail"
         app:layout_constraintStart_toStartOf="parent"

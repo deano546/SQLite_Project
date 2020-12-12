@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sqliteproject.R;
 import com.example.sqliteproject.db.DBHelper;
@@ -40,20 +41,21 @@ public class EditActivity extends AppCompatActivity {
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
         btnCancel = findViewById(R.id.btnCancel);
-
         editName = findViewById(R.id.etEditName);
         editYear = findViewById(R.id.etEditYear);
-
         tvStudentID = findViewById(R.id.tvstudentID);
-
         swEditActive = findViewById(R.id.swEditActive);
 
+        //Connect to database, populate list
         dbhelper = new DBHelper(EditActivity.this);
         studentList = dbhelper.getallStudents();
 
+
+        //Getting the ID that the main activity passed
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
 
+        //For each loop to find the correct student based on ID
         if(id >= 0) {
             for (StudentModel s: studentList
                  ) {if (s.getStudentId() == id) {
@@ -63,6 +65,7 @@ public class EditActivity extends AppCompatActivity {
             }
         }
 
+        //Setting the values
         editName.setText(student.getName());
         editYear.setText(String.valueOf(student.getEnrolYear()));
         swEditActive.setChecked(student.isEnrolled());
@@ -72,20 +75,29 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                student.setName(editName.getText().toString());
-                student.setEnrolYear(Integer.parseInt(editYear.getText().toString()));
-                student.setEnrolled(swEditActive.isChecked());
+                if (editName.getText().toString().matches("") || (editYear.getText().toString().matches("")))  {
+                    Toast.makeText(EditActivity.this, "Please ensure all fields are filled", Toast.LENGTH_SHORT).show();
+                }
 
-                dbhelper.updateRecord(student);
+                else {
+                    //Update the record based on User Inputs
+                    student.setName(editName.getText().toString());
+                    student.setEnrolYear(Integer.parseInt(editYear.getText().toString()));
+                    student.setEnrolled(swEditActive.isChecked());
+                    dbhelper.updateRecord(student);
+                    Intent intent = new Intent(EditActivity.this, MainActivity.class);
+                    startActivity(intent);
 
-                Intent intent = new Intent(EditActivity.this, MainActivity.class);
-                startActivity(intent);
+                }
+
+
             }
         });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Delete the record
                 dbhelper.deleteRecord(student);
 
                 Intent intent = new Intent(EditActivity.this, MainActivity.class);
@@ -96,6 +108,7 @@ public class EditActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Return to main activity
                 Intent intent = new Intent(EditActivity.this, MainActivity.class);
                 startActivity(intent);
             }

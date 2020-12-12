@@ -15,6 +15,10 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    //code adapted from https://www.youtube.com/watch?v=hDSVInZ2JCs
+
+
+    //constants to minimise typos
     public static final String STUDENT_TABLE = "STUDENT_TABLE";
     public static final String COLUMN_STUDENT_NAME = "STUDENT_NAME";
     public static final String COLUMN_YEAR_ENROLLED = "YEAR_ENROLLED";
@@ -58,6 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean deleteRecord(StudentModel studentModel) {
         //If record is found, delete it and return true
+
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + STUDENT_TABLE + " Where ID = " + studentModel.getStudentId();
 
@@ -76,8 +81,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean updateRecord(StudentModel studentModel) {
+        //Originally tried to do this manually with SQL statement, replaced it with the update function and its much easier to read
+
         //String active = studentModel.isEnrolled() == true ? "1" : "0";
         //String queryString = "UPDATE " + STUDENT_TABLE + " SET " + COLUMN_STUDENT_NAME + " " + name + " " + COLUMN_YEAR_ENROLLED + " " + year + " " + " " + COLUMN_CURRENT_STUDENT + " " + active +  " Where ID = " + id;
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -96,7 +104,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-
+    //Retrieve all records
     public List<StudentModel> getallStudents() {
         List<StudentModel> returnList = new ArrayList<>();
 
@@ -130,6 +138,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    //Query Function that allows searching
     public List<StudentModel> getSelectedStudents(String query) {
         List<StudentModel> returnList = new ArrayList<>();
 
@@ -163,6 +172,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+
+    //Function which allows user to sort
+    //Pass a different string to this function depending on which sort option the user chooses
+    //This did not work properly, I am using comparators in the model class instead
     public List<StudentModel> getSortedStudents(String query) {
         List<StudentModel> returnList = new ArrayList<>();
 

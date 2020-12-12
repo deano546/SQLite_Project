@@ -23,6 +23,7 @@ public class StudentModel {
 
     }
 
+    //These comparators allow sorting of the list of students. adapted from https://www.youtube.com/watch?v=FFCpjZkqfb0
 public static Comparator<StudentModel> StudentAZComparator = new Comparator<StudentModel>() {
     @Override
     public int compare(StudentModel s1, StudentModel s2) {

@@ -5,4 +5,18 @@
     <string name="name">Name</string>
     <string name="year_enrolled">Year Enrolled</string>
     <string name="current">Current?</string>
+    <string name="name">Name</string>
+    <string name="year_enrolled">Year Enrolled</string>
+    <string name="id">ID</string>
+    <string name="enrolled">Enrolled?</string>
+    <string name="preferences_icon">Preferences Icon</string>
+    <string name="splash_screen">Splash Screen</string>
+    <string name="on_off">On/Off</string>
+    <string name="save">Save</string>
+    <string name="back_to_list">Back to List</string>
+    <string name="welcome">Welcome!</string>
+    <string name="textview">TextView</string>
+    <string name="textview">TextView</string>
+    <string name="textview">TextView</string>
+    <string name="textview">TextView</string>
 </resources>

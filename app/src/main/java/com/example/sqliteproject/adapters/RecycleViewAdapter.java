@@ -2,6 +2,7 @@ package com.example.sqliteproject.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import java.util.List;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
 
 
-
+    //code adapted from https://www.youtube.com/watch?v=FFCpjZkqfb0
     List<StudentModel> studentList;
     Context context;
 
@@ -29,6 +30,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.context = context;
     }
 
+    //Declare parent layout so we can use a click listener
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvIDDetail;
         TextView tvNameDetail;
@@ -57,17 +59,19 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return holder;
     }
 
+
+    //Setting values based on the position in the list
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.tvIDDetail.setText(String.valueOf(studentList.get(position).getStudentId()));
         holder.tvNameDetail.setText(studentList.get(position).getName());
         holder.tvYearDetail.setText(String.valueOf(studentList.get(position).getEnrolYear()));
-        holder.tvActiveDetail.setText(studentList.get(position).isEnrolled() == true ? "true":"false");
+        holder.tvActiveDetail.setText(studentList.get(position).isEnrolled() == true ? "Yes":"No");
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //send control to EditActivity
+                //send user to EditActivity, pass the ID so the appropriate record can be retrieved and displayed
                 Intent intent = new Intent(context, EditActivity.class);
                 intent.putExtra("id", studentList.get(position).getStudentId());
                 context.startActivity(intent);

@@ -12,6 +12,8 @@ import com.example.sqliteproject.R;
 
 public class SplashActivity extends AppCompatActivity {
 
+    //Splash screen code adapted from https://www.youtube.com/watch?v=jXtof6OUtcE
+
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SWITCH1 = "switch1";
 
@@ -22,8 +24,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        //Check users preference, if they have the splash screen turned off, skip the splash screen
         loadData();
+
         if(switchOnOff == true) {
         new Handler().postDelayed(new Runnable () {
             @Override
@@ -34,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, Splash_Timer);}
         else {
+            //Skipping splash and going straight to main activity
             Intent homeintent = new Intent(SplashActivity.this,MainActivity.class);
             startActivity(homeintent);
         }
