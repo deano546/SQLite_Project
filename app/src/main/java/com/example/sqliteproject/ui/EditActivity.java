@@ -99,7 +99,7 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Delete the record
                 dbhelper.deleteRecord(student);
-
+                Toast.makeText(EditActivity.this, "Record Deleted", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EditActivity.this, MainActivity.class);
                 startActivity(intent);
             }
