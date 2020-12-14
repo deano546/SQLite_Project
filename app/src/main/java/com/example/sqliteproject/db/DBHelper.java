@@ -35,6 +35,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
     db.execSQL(createTableStatement);
 
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_STUDENT_NAME, "Frank");
+        cv.put(COLUMN_YEAR_ENROLLED, 2000);
+        cv.put(COLUMN_CURRENT_STUDENT, true);
+
+        long insert = db.insert(STUDENT_TABLE, null, cv);
+        if(insert == -1) {
+            //
+        }
+        else {
+            //
+        }
+
     }
 
     //When you are changing the database version, such as adding new tables
