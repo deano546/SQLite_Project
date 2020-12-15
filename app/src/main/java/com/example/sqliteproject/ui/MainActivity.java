@@ -2,6 +2,7 @@ package com.example.sqliteproject.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etName;
     EditText etYear;
     EditText etSearch;
-    Switch swEnrolled;
+    SwitchCompat swEnrolled;
     RecyclerView rvStudents;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;

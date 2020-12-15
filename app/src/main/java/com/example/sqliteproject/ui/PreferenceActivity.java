@@ -1,6 +1,7 @@
 package com.example.sqliteproject.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +17,7 @@ public class PreferenceActivity extends AppCompatActivity {
 
     //Shared Preferences code adapted from https://www.youtube.com/watch?v=fJEFZ6EOM9o
 
-    Switch swPref;
+    SwitchCompat swPref;
     Button btnSavePref;
     Button btnBack;
     public static final String SHARED_PREFS = "sharedPrefs";

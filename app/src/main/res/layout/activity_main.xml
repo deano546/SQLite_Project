@@ -18,7 +18,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/etYear"
@@ -31,9 +32,10 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName" />
+        app:layout_constraintTop_toBottomOf="@+id/etName"
+        android:importantForAutofill="no" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swCurrent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +57,8 @@
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/swCurrent"
-        app:layout_constraintTop_toTopOf="@+id/swCurrent" />
+        app:layout_constraintTop_toTopOf="@+id/swCurrent"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btnAdd"

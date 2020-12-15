@@ -1,6 +1,7 @@
 package com.example.sqliteproject.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +28,7 @@ public class EditActivity extends AppCompatActivity {
     EditText editName;
     EditText editYear;
     TextView tvStudentID;
-    Switch swEditActive;
+    SwitchCompat swEditActive;
     DBHelper dbhelper;
     StudentModel student;
     List<StudentModel> studentList = new ArrayList<StudentModel>();
