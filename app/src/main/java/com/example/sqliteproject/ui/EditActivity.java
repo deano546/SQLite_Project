@@ -60,10 +60,7 @@ public class EditActivity extends AppCompatActivity {
             for (StudentModel s: studentList
                  ) {if (s.getStudentId() == id) {
                      student = s;
-            }
-
-            }
-        }
+            }}}
 
         //Setting the values
         editName.setText(student.getName());
@@ -87,12 +84,7 @@ public class EditActivity extends AppCompatActivity {
                     dbhelper.updateRecord(student);
                     Intent intent = new Intent(EditActivity.this, MainActivity.class);
                     startActivity(intent);
-
-                }
-
-
-            }
-        });
+                } }});
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

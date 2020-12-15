@@ -16,9 +16,9 @@ public class SplashActivity extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SWITCH1 = "switch1";
-
     private boolean switchOnOff;
 
+    //Timer to determine the length of time splash screen is displayed
     private static int Splash_Timer = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

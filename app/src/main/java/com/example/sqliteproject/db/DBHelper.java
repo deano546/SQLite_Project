@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.sqliteproject.model.StudentModel;
+import com.example.sqliteproject.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,6 @@ import java.util.List;
 public class DBHelper extends SQLiteOpenHelper {
 
     //code adapted from https://www.youtube.com/watch?v=hDSVInZ2JCs
-
 
     //constants to minimise typos
     public static final String STUDENT_TABLE = "STUDENT_TABLE";
@@ -34,21 +36,19 @@ public class DBHelper extends SQLiteOpenHelper {
     String createTableStatement = "CREATE TABLE " + STUDENT_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STUDENT_NAME + " TEXT, " + COLUMN_YEAR_ENROLLED + " INT, " + COLUMN_CURRENT_STUDENT + " BOOL )";
 
     db.execSQL(createTableStatement);
+    ContentValues cv = new ContentValues();
 
-        ContentValues cv = new ContentValues();
+    cv.put(COLUMN_STUDENT_NAME, "Frank");
+    cv.put(COLUMN_YEAR_ENROLLED, 2000);
+    cv.put(COLUMN_CURRENT_STUDENT, true);
 
-        cv.put(COLUMN_STUDENT_NAME, "Frank");
-        cv.put(COLUMN_YEAR_ENROLLED, 2000);
-        cv.put(COLUMN_CURRENT_STUDENT, true);
-
-        long insert = db.insert(STUDENT_TABLE, null, cv);
-        if(insert == -1) {
-            //
+    long insert = db.insert(STUDENT_TABLE, null, cv);
+    if(insert == -1) {
+        Log.d("CREATEDB","INSERT RECORD FAILED");
+    }
+    else {
+        Log.d("CREATEDB","INSERT RECORD SUCCESS");
         }
-        else {
-            //
-        }
-
     }
 
     //When you are changing the database version, such as adding new tables
@@ -82,7 +82,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(queryString, null);
 
-
         //If there is a result, return true
         if(cursor.moveToFirst()) {
             return true;
@@ -90,7 +89,6 @@ public class DBHelper extends SQLiteOpenHelper {
         else {
             return false;
         }
-
 
     }
 
@@ -121,11 +119,8 @@ public class DBHelper extends SQLiteOpenHelper {
     //Retrieve all records
     public List<StudentModel> getallStudents() {
         List<StudentModel> returnList = new ArrayList<>();
-
         String queryString = "Select * from " + STUDENT_TABLE;
-
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery(queryString, null);
 
         //returns a true if there are results
@@ -133,7 +128,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
             //loop through results, assign each to a new student
             do {
-
                 int studentID = cursor.getInt(0);
                 String studentName = cursor.getString(1);
                 int yearEnrolled = cursor.getInt(2);
@@ -146,6 +140,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         else {
             //failure. return an empty list
+            Log.d("GETALL", "FAILURE TO RETRIEVE ALL");
         }
         cursor.close();
         db.close();
@@ -155,11 +150,8 @@ public class DBHelper extends SQLiteOpenHelper {
     //Query Function that allows searching
     public List<StudentModel> getSelectedStudents(String query) {
         List<StudentModel> returnList = new ArrayList<>();
-
         String queryString = "Select * from " + STUDENT_TABLE + " WHERE " + COLUMN_STUDENT_NAME + " LIKE " + "'%" + query + "%'" ;
-
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery(queryString, null);
 
         //returns a true if there are results
@@ -179,13 +171,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         }
         else {
-            //failure. return an empty list
+            Log.d("SEARCH", "NO RESULTS");
         }
         cursor.close();
         db.close();
         return returnList;
     }
-
 
     //Function which allows user to sort
     //Pass a different string to this function depending on which sort option the user chooses

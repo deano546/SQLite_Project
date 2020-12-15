@@ -69,10 +69,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new RecycleViewAdapter(studentList,this);
         rvStudents.setAdapter(mAdapter);
 
-
-        
-        
-
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,16 +78,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please ensure Name & Year are not empty", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
                     try {
                         studentModel = new StudentModel(-1,etName.getText().toString(),Integer.parseInt(etYear.getText().toString()),swEnrolled.isChecked() );
-
                     }
                     catch (Exception e) {
                         Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         studentModel = new StudentModel(-1,"error",0,false );
-
-
                     }
                     boolean success = dbhelper.addRecord(studentModel);
                     Toast.makeText(MainActivity.this, "Record Added", Toast.LENGTH_SHORT).show();
@@ -105,13 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     rvStudents.setAdapter(mAdapter);
 
                 }
-
-
-
-
-
-
-
             }
         });
 
@@ -125,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     //Pass query to the search function, then display it
                     String query = etSearch.getText().toString();
-
                     studentList = dbhelper.getSelectedStudents(query);
                     rvStudents.setHasFixedSize(true);
                     layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -139,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         btnPref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Open Splash Screen Preference Screen
+                //Open Splash Screen Preference Activity
                 Intent intent = new Intent(MainActivity.this,PreferenceActivity.class);
                 startActivity(intent);
             }
@@ -202,6 +186,15 @@ public class MainActivity extends AppCompatActivity {
                 rvStudents.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
                 return true;
+                //Added this option to reset the search
+            case R.id.menu_resetSearch:
+                studentList = dbhelper.getallStudents();
+                rvStudents.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(MainActivity.this);
+                rvStudents.setLayoutManager(layoutManager);
+                mAdapter = new RecycleViewAdapter(studentList,MainActivity.this);
+                rvStudents.setAdapter(mAdapter);
+
 
         }
 

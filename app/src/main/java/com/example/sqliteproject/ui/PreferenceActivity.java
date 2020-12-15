@@ -21,7 +21,6 @@ public class PreferenceActivity extends AppCompatActivity {
     Button btnBack;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SWITCH1 = "switch1";
-
     private boolean switchOnOff;
 
     @Override

@@ -14,4 +14,7 @@
     <item
         android:id="@+id/menu_yearDescending"
         android:title="Year Descending" />
+    <item
+        android:id="@+id/menu_resetSearch"
+        android:title="Reset Search" />
 </menu>

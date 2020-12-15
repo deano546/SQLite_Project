@@ -19,4 +19,6 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="yes_no">Yes/No</string>
+    <string name="current_student">Current Student</string>
+    <string name="current_studentquestion">Current Student?</string>
 </resources>

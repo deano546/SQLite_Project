@@ -48,7 +48,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,11 +58,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return holder;
     }
 
-
     //Setting values based on the position in the list
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         holder.tvIDDetail.setText(String.valueOf(studentList.get(position).getStudentId()));
         holder.tvNameDetail.setText(studentList.get(position).getName());
         holder.tvYearDetail.setText(String.valueOf(studentList.get(position).getEnrolYear()));
@@ -77,12 +74,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 context.startActivity(intent);
             }
         });
-
-
-
-
     }
-
     @Override
     public int getItemCount() {
         return studentList.size();
